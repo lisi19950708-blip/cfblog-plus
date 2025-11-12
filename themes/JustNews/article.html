@@ -45,6 +45,138 @@
 						<a href="/" rel="home"><img src="{{ &OPT.theme_github_path }}JustNews/files/logo2.png" alt="请自定义OPT.logo"></a>
 						{{ /OPT.logo }}
 					</div>
+		<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深色模式随内容图标示例</title>
+
+  <!-- Font Awesome 图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #222;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #0056b3;
+    }
+
+    /* 导航栏 */
+    .navbar {
+      background-color: #f8f9fa;
+      color: #333;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.4s ease;
+    }
+    .navbar a {
+      color: inherit;
+      margin-right: 15px;
+      font-weight: 500;
+    }
+
+    /* 深色模式 */
+    .dark-mode {
+      background-color: #121212;
+      color: #ddd;
+    }
+    .dark-mode a {
+      color: #66b2ff;
+    }
+    .dark-mode .navbar {
+      background-color: #2a2a2a;
+    }
+
+    /* 内容区域 */
+    main {
+      padding: 20px;
+      background-color: #ffffff;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .dark-mode main {
+      background-color: #1e1e1e;
+      color: #ddd;
+    }
+
+    /* 模式切换图标 */
+    .mode-toggle {
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: inherit; /* 跟随父元素颜色 */
+      display: inline-flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+    .mode-toggle i {
+      transition: color 0.3s, transform 0.3s;
+    }
+    .mode-toggle:hover i {
+      transform: scale(1.2);
+    }
+
+    /* 彩色图标 */
+    #sun-icon {
+      color: #f1c40f; /* 浅色模式太阳黄色 */
+    }
+    #moon-icon {
+      color: #9b59b6; /* 深色模式月亮紫色 */
+      display: none;
+    }
+    .dark-mode #sun-icon {
+      display: none;
+    }
+    .dark-mode #moon-icon {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+
+    <!-- 图标放在导航栏右侧 -->
+    <button class="mode-toggle" id="dark-mode-toggle" aria-label="切换深色模式">
+      <i class="fas fa-sun" id="sun-icon"></i>
+      <i class="fas fa-moon" id="moon-icon"></i>
+    </button>
+  </nav>
+
+  <script>
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    // 初始化模式
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'inline';
+    }
+
+    // 点击切换
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const dark = document.body.classList.contains('dark-mode');
+      sunIcon.style.display = dark ? 'none' : 'inline';
+      moonIcon.style.display = dark ? 'inline' : 'none';
+      localStorage.setItem('darkMode', dark);
+    });
+  </script>
+</body>
 				</div>
 				<div class="collapse navbar-collapse">
 					<nav class="navbar-left primary-menu">
