@@ -1,6 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
+		<!-- 自动跟随系统深色模式 -->
+    <style>
+      /* 默认浅色模式 */
+      body {
+        background-color: #ffffff;
+        color: #222;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      a {
+        color: #007bff;
+        transition: color 0.3s;
+      }
+
+      /* 系统深色模式 */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #121212;
+          color: #ddd;
+        }
+        a {
+          color: #66b2ff;
+        }
+
+        /* 如果有导航栏、内容区等需要修改颜色，可以加上 */
+        .navbar, .main, .sec-panel, .sidebar, .footer {
+          background-color: #1e1e1e;
+          color: #ddd;
+        }
+        .navbar a, .main a, .sidebar a, .footer a {
+          color: #66b2ff;
+        }
+      }
+    </style>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="renderer" content="webkit">
