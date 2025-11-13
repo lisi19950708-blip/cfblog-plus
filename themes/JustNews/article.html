@@ -45,6 +45,192 @@
 						<a href="/" rel="home"><img src="{{ &OPT.theme_github_path }}JustNews/files/logo2.png" alt="请自定义OPT.logo"></a>
 						{{ /OPT.logo }}
 					</div>
+
+					<head>
+  <title>博客搜索功能</title>
+  <style>
+    /* 搜索框容器样式 */
+    .search-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* 搜索按钮样式 */
+    .search-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #007bff;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    /* 悬停效果 */
+    .search-icon:hover {
+      background-color: #0056b3;
+    }
+
+    /* 搜索框样式 */
+    .search-box {
+      display: none;
+      position: fixed;
+      top: 10%;  /* 调整顶部位置与搜索按钮对齐 */
+      right: 10px;
+      width: 500px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    /* 搜索输入框样式 */
+    .search-input {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    /* 筛选结果的列表样式 */
+    .search-results {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .search-results li {
+      padding: 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* 搜索框显示时的过渡效果 */
+    .search-box.active {
+      display: block;
+      animation: slide-in 0.3s ease-out;
+    }
+
+    /* 动画效果 */
+    @keyframes slide-in {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* 响应式样式：调整搜索按钮和搜索框的布局 */
+    @media (max-width: 768px) {
+      .search-box {
+        width: 80%;  /* 在小屏设备上调整搜索框的宽度 */
+        right: 5px;  /* 在小屏幕设备上微调位置 */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 搜索按钮和导航栏 -->
+  <header class="header">
+    <div class="container clearfix">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar icon-bar-1"></span>
+          <span class="icon-bar icon-bar-2"></span>
+          <span class="icon-bar icon-bar-3"></span>
+        </button>
+        <div class="logo">
+          <a href="/" rel="home"><img src="{{ &OPT.logo }}" alt="{{ &OPT.siteName }}"></a>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse">
+        <nav class="navbar-left primary-menu">
+          <ul id="menu-%e5%af%bc%e8%88%aa" class="nav navbar-nav wpcom-adv-menu">
+            {{ #widgetMenuList }}
+              <li class="menu-item"><a href="{{ &url }}">{{ &title }}</a></li>
+            {{ /widgetMenuList }}
+          </ul>
+        </nav>
+        <!-- 搜索按钮和搜索框 -->
+        <div class="navbar-action pull-right">
+          <!-- 搜索按钮 -->
+          <div class="search-container">
+            <div class="search-icon" onclick="toggleSearchBox(event)">
+              <span>&#128269;</span> <!-- 搜索图标 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 搜索框 -->
+  <div class="search-box" id="search-box">
+    <input type="text" class="search-input" id="search-input" placeholder="搜索内容..." onkeyup="filterPosts()">
+    <ul class="search-results" id="search-results"></ul>
+  </div>
+
+  <script>
+    // 切换搜索框显示和隐藏
+    function toggleSearchBox(event) {
+      const searchBox = document.getElementById('search-box');
+      searchBox.classList.toggle('active');
+      
+      // 阻止点击事件冒泡，防止点击搜索框时也隐藏它
+      event.stopPropagation();
+    }
+
+    // 筛选博客文章
+    function filterPosts() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const posts = document.querySelectorAll('.post');
+      const results = document.getElementById('search-results');
+
+      // 清空之前的搜索结果
+      results.innerHTML = '';
+
+      let foundPosts = 0;
+
+      posts.forEach(post => {
+        const title = post.getAttribute('data-title').toLowerCase();
+        if (title.includes(query)) {
+          foundPosts++;
+          const resultItem = document.createElement('li');
+          resultItem.textContent = post.getAttribute('data-title');
+          resultItem.onclick = () => {
+            window.location.href = '#' + post.querySelector('h2').textContent; // 点击搜索结果跳转到对应文章
+          };
+          results.appendChild(resultItem);
+        }
+      });
+
+      // 如果没有找到匹配的内容
+      if (foundPosts === 0) {
+        const noResults = document.createElement('li');
+        noResults.textContent = '未找到相关内容';
+        results.appendChild(noResults);
+      }
+    }
+
+    // 点击页面其他地方隐藏搜索框
+    document.addEventListener('click', function(event) {
+      const searchBox = document.getElementById('search-box');
+      const searchContainer = document.querySelector('.search-container');
+      if (!searchBox.contains(event.target) && !searchContainer.contains(event.target)) {
+        searchBox.classList.remove('active');
+      }
+    });
+  </script>
+</body>	
+					
 				</div>
 				<div class="collapse navbar-collapse">
 					<nav class="navbar-left primary-menu">
