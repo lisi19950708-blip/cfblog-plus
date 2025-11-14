@@ -61,7 +61,7 @@
         /* 默认样式：适用于电脑端 */
         .navbar-action {
             display: flex;
-            justify-content: center; /* 水平居中对齐按钮 */
+            justify-content: flex-end; /* 按钮右对齐 */
             gap: 20px; /* 按钮之间的间距 */
             padding: 20px;
         }
@@ -74,6 +74,10 @@
             border-radius: 4px; /* 圆角按钮 */
             font-size: 16px; /* 字体大小 */
             text-align: center; /* 文字居中对齐 */
+            border: 2px solid #007bff; /* 蓝色边框 */
+            position: relative; /* 为了后续定位圆圈做准备 */
+     
+    
         }
 
         /* 手机端样式：最大宽度为 768px */
@@ -106,7 +110,6 @@
 </div>
 
 </body>
-
 						</div>
 					</div>
 				</div>
