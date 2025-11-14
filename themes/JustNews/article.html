@@ -54,60 +54,8 @@
 							{{ /widgetMenuList }}
 						</ul>
 					</nav>
-					<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录注册</title>
-    <style>
-            /* 默认样式：适用于电脑端 */
-        .navbar-action {
-            display: flex;
-            justify-content: flex-end; /* 按钮右对齐 */
-            align-items: center; /* 按钮垂直居中 */
-            gap: 7px; /* 按钮之间的间距 */
-            padding: 5px 20px; /* 调整内边距，确保按钮上移 */
-        }
-
-        .navbar-action a.login {
-            padding: 9px 20px; /* 按钮的内边距 */
-            background-color: #007bff; /* 按钮背景颜色 */
-            color: white; /* 按钮文字颜色 */
-            text-decoration: none; /* 去掉链接的下划线 */
-            border-radius: 4px; /* 圆角按钮 */
-            font-size: 13px; /* 字体大小 */
-            text-align: ; /* 文字居中对齐 */
-            border: 0px solid #007bff; /* 蓝色边框 */
-        }
-
-        /* 手机端样式：最大宽度为 768px */
-        @media (max-width: 768px) {
-            .navbar-action {
-                flex-direction: column; /* 默认按钮垂直排列 */
-                align-items: center; /* 按钮居中对齐 */
-                padding: 10px; /* 手机端稍微减少内边距 */
-            }
-
-            .navbar-action a.login {
-                width: 100%; /* 按钮占满屏幕宽度 */
-                margin-bottom: 12px; /* 按钮之间的间距 */
-                padding: 15px 20px; /* 调整按钮内边距 */
-                text-align: center; /* 文字居中对齐 */
-            }
-
-            .navbar-action a.login:last-child {
-                margin-bottom: 0; /* 最后一个按钮底部不添加额外的间距 */
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="navbar-action">
-    <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/login" target="_blank">登录</a>
-    <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/register" target="_blank">注册</a>
-</div>
-
-</body>
+						<div id="j-user-wrap">
+							<a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/login">登录</a>
 						</div>
 					</div>
 				</div>
