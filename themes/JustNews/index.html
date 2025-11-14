@@ -53,19 +53,59 @@
 							{{ /widgetMenuList }}
 						</ul>
 					</nav>
-					 <div class="navbar-action pull-right" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
-    <div id="j-user-wrap">
-        <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/login" target="_blank" 
-           style="display: block; width: 100%; margin-bottom: 10px; padding: 12px 20px; text-align: center; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 16px;">
-           登录
-        </a>
-    </div>
-   <div id="j-user-wrap">
-    <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/register" target="_blank" 
-       style="display: block; width: 100%; margin-bottom: 0; padding: 12px 20px; text-align: center; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 16px;">
-       注册
-    </a>
+				<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册</title>
+    <style>
+        /* 默认样式：适用于电脑端 */
+        .navbar-action {
+            display: flex;
+            justify-content: center; /* 水平居中对齐按钮 */
+            gap: 20px; /* 按钮之间的间距 */
+            padding: 20px;
+        }
+
+        .navbar-action a.login {
+            padding: 12px 20px; /* 按钮的内边距 */
+            background-color: #007bff; /* 按钮背景颜色 */
+            color: white; /* 按钮文字颜色 */
+            text-decoration: none; /* 去掉链接的下划线 */
+            border-radius: 4px; /* 圆角按钮 */
+            font-size: 16px; /* 字体大小 */
+            text-align: center; /* 文字居中对齐 */
+        }
+
+        /* 手机端样式：最大宽度为 768px */
+        @media (max-width: 768px) {
+            .navbar-action {
+                display: flex;
+                flex-direction: column; /* 按钮垂直排列 */
+                align-items: center; /* 按钮居中对齐 */
+                padding: 10px; /* 手机端稍微减少内边距 */
+            }
+
+            .navbar-action a.login {
+                width: 100%; /* 按钮占满屏幕宽度 */
+                margin-bottom: 12px; /* 按钮之间的间距 */
+                padding: 15px 20px; /* 调整按钮内边距 */
+                text-align: center; /* 文字居中对齐 */
+            }
+
+            .navbar-action a.login:last-child {
+                margin-bottom: 0; /* 最后一个按钮底部不添加额外的间距 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar-action">
+    <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/login" target="_blank">登录</a>
+    <a class="login cur" href="https://pinglun.xiaogangcpm.dpdns.org/ui/register" target="_blank">注册</a>
 </div>
+
+</body>
 
 						</div>
 					</div>
