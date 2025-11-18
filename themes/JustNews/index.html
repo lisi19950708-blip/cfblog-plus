@@ -337,6 +337,36 @@
 					}
 				});
 			})(jQuery);</script>
+		<script>
+// 深色模式切换 + 持久化存储
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('dark-mode-toggle');
+    const darkText = toggle.querySelector('.dark-text');
+    const lightText = toggle.querySelector('.light-text');
+
+    // 读取保存的主题
+    if (localStorage.getItem('darkMode') === 'enabled' || 
+        (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.classList.add('dark-mode');
+        darkText.style.display = 'none';
+        lightText.style.display = 'inline';
+    }
+
+    toggle.addEventListener('click', function () {
+        if (document.body.classList.contains('dark-mode')) {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'disabled');
+            darkText.style.display = 'inline';
+            lightText.style.display = 'none';
+        } else {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'enabled');
+            darkText.style.display = 'none';
+            lightText.style.display = 'inline';
+        }
+    });
+});
+</script>
 		{{ &OPT.codeBeforBody }}
 	</body>
 
